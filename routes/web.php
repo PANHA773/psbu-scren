@@ -1,0 +1,14 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\HomeController;
+
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'kh'])) {
+        Session::put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('lang.switch');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
