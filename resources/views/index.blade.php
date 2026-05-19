@@ -876,11 +876,11 @@
                 transform: translateY(0)
             }
         }
-        /* Responsive tweaks */
         @media (max-width: 1000px) {
             .site-header { padding: 0 18px; height: 64px; }
             .header-right { gap: 8px; }
             .intl-pill { display: none; }
+            .hero { height: 380px; }
             .hero-body { padding: clamp(10px, 4vw, 18px) clamp(12px, 6vw, 48px); }
             .c-btn { display: none; }
             .bottom { grid-template-columns: 1fr; padding: 10px; gap: 12px; }
@@ -892,6 +892,10 @@
         @media (max-width: 767px) {
             body {
                 padding-bottom: 74px; /* Space for sticky bar */
+            }
+
+            .hero {
+                height: 280px;
             }
 
             .contact {
@@ -1151,6 +1155,30 @@
         document.getElementById('nextBtn').onclick = () => { goTo(cur + 1); play(); };
         dotBtns.forEach(b => b.addEventListener('click', () => { goTo(+b.dataset.index); play(); }));
         play();
+
+        // Premium Touch Gesture Swipe Support
+        (function() {
+            const heroEl = document.querySelector('.hero');
+            if (heroEl) {
+                let startX = 0;
+                heroEl.addEventListener('touchstart', e => {
+                    startX = e.touches[0].clientX;
+                }, { passive: true });
+
+                heroEl.addEventListener('touchend', e => {
+                    const endX = e.changedTouches[0].clientX;
+                    const diff = startX - endX;
+                    if (Math.abs(diff) > 40) {
+                        if (diff > 0) {
+                            goTo(cur + 1);
+                        } else {
+                            goTo(cur - 1);
+                        }
+                        play();
+                    }
+                }, { passive: true });
+            }
+        })();
     </script>
 
     <script>
