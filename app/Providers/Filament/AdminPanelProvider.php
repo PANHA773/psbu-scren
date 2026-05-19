@@ -54,6 +54,23 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->renderHook(
+                'panels::head.start',
+                fn (): string => '
+                    <script>
+                        window.addEventListener("error", function (e) {
+                            if (e.filename && e.filename.includes("onboarding.js")) {
+                                e.preventDefault();
+                            }
+                        });
+                        window.addEventListener("unhandledrejection", function (e) {
+                            if (e.reason && e.reason.stack && e.reason.stack.includes("onboarding.js")) {
+                                e.preventDefault();
+                            }
+                        });
+                    </script>
+                ',
+            );
     }
 }
