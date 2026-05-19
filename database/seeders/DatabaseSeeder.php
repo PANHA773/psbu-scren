@@ -87,5 +87,7 @@ class DatabaseSeeder extends Seeder
             'icon' => 'globe',
             'order' => 4
         ]);
+
+        $this->call(UserSeeder::class);
     }
 }
