@@ -106,18 +106,20 @@
 
         .logo-kh {
             font-family: 'Noto Serif Khmer', serif;
-            font-size: 13px;
+            font-size: 23px;
             font-weight: 700;
             color: var(--gold-l);
             line-height: 1;
         }
 
         .logo-en {
+            margin-top: 5px;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 10.5px;
-            letter-spacing: .13em;
+            font-size: 10.8px;
+            letter-spacing: 0.28em;
             text-transform: uppercase;
             color: var(--muted);
+            white-space: nowrap;
         }
 
         .header-right {
@@ -272,8 +274,8 @@
         }
 
         .hero-seal {
-            width: clamp(56px, 8vw, 88px);
-            height: clamp(56px, 8vw, 88px);
+           width: clamp(90px, 12vw, 140px);
+height: clamp(90px, 12vw, 140px);
             border-radius: 50%;
             background: radial-gradient(circle at 40% 35%, #1a3060, var(--navy-d));
             border: 3px solid var(--gold);
@@ -288,7 +290,7 @@
 
         .hero-kh {
             font-family: 'Noto Serif Khmer', serif;
-            font-size: clamp(16px, 2.5vw, 28px);
+            font-size: clamp(40px, 2.5vw, 28px);
             font-weight: 700;
             color: #fff;
             line-height: 1.55;
@@ -878,6 +880,7 @@
         }
         @media (max-width: 1000px) {
             .site-header { padding: 0 18px; height: 64px; }
+            .logo-words { display: none; }
             .header-right { gap: 8px; }
             .intl-pill { display: none; }
             .hero { height: 380px; }
