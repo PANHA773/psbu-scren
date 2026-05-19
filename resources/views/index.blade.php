@@ -1022,7 +1022,7 @@ height: clamp(90px, 12vw, 140px);
             <div class="header-right">
                 <a href="{{ route('lang.switch', 'kh') }}" class="lang-pill {{ app()->getLocale() === 'kh' ? 'active' : '' }}"><span class="lang-flag">🇰🇭</span> Khmer</a>
                 <a href="{{ route('lang.switch', 'en') }}" class="lang-pill {{ app()->getLocale() === 'en' ? 'active' : '' }}"><span class="lang-flag">🇬🇧</span> English</a>
-                <a href="#" class="intl-pill">{{ app()->getLocale() === 'en' ? 'International Project' : 'គម្រោងអន្តរជាតិ' }}</a>
+                <a href="https://inter.psbu.edu.kh/" class="intl-pill">{{ app()->getLocale() === 'en' ? 'International Project' : 'គម្រោងអន្តរជាតិ' }}</a>
             </div>
         </header>
 
@@ -1079,12 +1079,12 @@ height: clamp(90px, 12vw, 140px);
             <!-- Skills -->
             <div class="skills">
                 <div class="skills-head">
-                    <span class="skills-title">{{ app()->getLocale() === 'en' ? 'Areas of Study' : 'តំបន់សិក្សា' }}</span>
+                    <span class="skills-title">{{ app()->getLocale() === 'en' ? 'Menu' : 'មីនុយ' }}</span>
                     <div class="skills-rule"></div>
                 </div>
                 <div class="skills-grid">
                     @foreach($skills as $skill)
-                    <a href="{{ $skill->link }}" class="sk">
+                    <a href="{{ $skill->link }}" class="sk" target="_blank" rel="noopener noreferrer">
                         <div class="sk-icon">
                             <svg viewBox="0 0 24 24">
                                 {!! $skill->icon_svg !!}
