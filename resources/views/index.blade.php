@@ -975,7 +975,25 @@
             .stat-num { font-size: 34px; }
             .stat-num sup { font-size: 14px; }
             .c-dots { bottom: 8px; gap: 6px; }
-            .skills-grid { gap: 6px; }
+        }
+
+        @media (min-width: 1001px) {
+            html,
+            body {
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            .shell {
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            .hero {
+                flex: 1 1 auto;
+                height: auto;
+                min-height: 220px;
+            }
         }
     </style>
 </head>
@@ -1016,7 +1034,7 @@
             <button class="c-btn next" id="nextBtn">&#8250;</button>
 
             <div class="hero-body">
-                <div class="logo-seal">
+                <div class="hero-seal">
                     <img src="images/logo.png" alt="PSBU Logo">
                 </div>
                 <h1 class="hero-kh">ពុទ្ធិកសាកលវិទ្យាល័យព្រះសីហមុនីរាជា</h1>
