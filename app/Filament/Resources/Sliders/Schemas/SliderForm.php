@@ -14,8 +14,9 @@ class SliderForm
             ->components([
                 FileUpload::make('image')
                     ->image()
-                    ->disk('public_assets')
+                    ->disk('public')
                     ->directory('images')
+                    ->visibility('public')
                     ->required(),
                 TextInput::make('order')
                     ->required()
