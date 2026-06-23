@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>preah sihamoniraja buddhist university</title>
+    <title>Preah Sihamoniraja Buddhist University</title>
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
     <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
