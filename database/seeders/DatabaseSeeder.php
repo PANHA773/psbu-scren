@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Announcement;
 use App\Models\Slider;
 use App\Models\Stat;
 use App\Models\Skill;
@@ -88,6 +89,7 @@ class DatabaseSeeder extends Seeder
             'order' => 4
         ]);
 
+        $this->call(AnnouncementSeeder::class);
         $this->call(UserSeeder::class);
     }
 }
