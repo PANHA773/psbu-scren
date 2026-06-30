@@ -26,6 +26,35 @@
             --border-g: rgba(201, 150, 58, 0.30);
         }
 
+        /* ── POINTER SPOTLIGHT ── */
+        #pointer-light {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            pointer-events: none;
+            filter: blur(35px);
+            background:
+                /* bright warm core */
+                radial-gradient(
+                    80px circle at var(--mx, -9999px) var(--my, -9999px),
+                    rgba(255, 210, 100, 0.30) 0%,
+                    transparent 100%
+                ),
+                /* golden mid-ring */
+                radial-gradient(
+                    220px circle at var(--mx, -9999px) var(--my, -9999px),
+                    rgba(201, 150, 58, 0.22) 0%,
+                    rgba(180, 120, 40, 0.08) 60%,
+                    transparent 100%
+                ),
+                /* soft outer bloom */
+                radial-gradient(
+                    400px circle at var(--mx, -9999px) var(--my, -9999px),
+                    rgba(160, 110, 30, 0.08) 0%,
+                    transparent 100%
+                );
+        }
+
         *,
         *::before,
         *::after {
@@ -442,6 +471,19 @@
             color: var(--gold);
             line-height: 1;
             text-shadow: 0 0 12px rgba(201, 150, 58, 0.4);
+            display: inline-block;
+            animation: stat-float 3.6s ease-in-out infinite;
+        }
+
+        /* stagger the two numbers so they bob out of sync */
+        .stat:nth-child(2) .stat-num {
+            animation-delay: -1.8s;
+        }
+
+        @keyframes stat-float {
+            0%   { transform: translateY(0px); }
+            50%  { transform: translateY(-7px); }
+            100% { transform: translateY(0px); }
         }
 
         .stat-num sup {
@@ -804,8 +846,11 @@
         .qr-large-frame img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 5;
             mix-blend-mode: multiply;
         }
@@ -1679,6 +1724,39 @@
         })();
     </script>
     @endif
+
+    <!-- Pointer spotlight -->
+    <div id="pointer-light" aria-hidden="true"></div>
+    <script>
+        (function () {
+            var el = document.getElementById('pointer-light');
+            var raf;
+            var tx = -9999, ty = -9999;
+            var cx = -9999, cy = -9999;
+
+            document.addEventListener('mousemove', function (e) {
+                tx = e.clientX;
+                ty = e.clientY;
+                if (!raf) { raf = requestAnimationFrame(tick); }
+            });
+
+            document.addEventListener('mouseleave', function () {
+                tx = -9999; ty = -9999;
+            });
+
+            function tick() {
+                raf = null;
+                // smooth lerp toward target
+                cx += (tx - cx) * 0.12;
+                cy += (ty - cy) * 0.12;
+                el.style.setProperty('--mx', cx.toFixed(1) + 'px');
+                el.style.setProperty('--my', cy.toFixed(1) + 'px');
+                if (Math.abs(tx - cx) > 0.5 || Math.abs(ty - cy) > 0.5) {
+                    raf = requestAnimationFrame(tick);
+                }
+            }
+        })();
+    </script>
 
 </body>
 
