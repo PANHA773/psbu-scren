@@ -1337,10 +1337,202 @@
                 min-height: 200px;
             }
         }
+
+        /* ══════════════════════
+           PAGE LOADER
+        ══════════════════════ */
+        #page-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #060d1f;
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                        visibility 0.7s;
+        }
+
+        #page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Atom wrapper */
+        .atom {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+
+        /* Nucleus cluster */
+        .nucleus {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 34px;
+            height: 34px;
+        }
+
+        .nucleus-ball {
+            position: absolute;
+            border-radius: 50%;
+            animation: nucleus-pulse 2.4s ease-in-out infinite;
+        }
+
+        .nucleus-ball:nth-child(1) {
+            width: 18px; height: 18px;
+            background: radial-gradient(circle at 38% 35%, #8ab4f8, #3a6fd8);
+            top: 8px; left: 8px;
+            animation-delay: 0s;
+        }
+        .nucleus-ball:nth-child(2) {
+            width: 14px; height: 14px;
+            background: radial-gradient(circle at 38% 35%, #c5d8ff, #6090e0);
+            top: 2px; left: 16px;
+            animation-delay: -0.6s;
+        }
+        .nucleus-ball:nth-child(3) {
+            width: 13px; height: 13px;
+            background: radial-gradient(circle at 38% 35%, #7ba7f7, #2255c0);
+            top: 16px; left: 2px;
+            animation-delay: -1.2s;
+        }
+        .nucleus-ball:nth-child(4) {
+            width: 12px; height: 12px;
+            background: radial-gradient(circle at 38% 35%, #a8c6ff, #5580d8);
+            top: 17px; left: 18px;
+            animation-delay: -1.8s;
+        }
+
+        @keyframes nucleus-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50%       { transform: scale(1.12); opacity: 1; }
+        }
+
+        /* Orbital rings */
+        .orbit {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2.5px solid transparent;
+            border-top-color:    #3355dd;
+            border-bottom-color: #3355dd;
+        }
+
+        .orbit-1 .orbit-ring {
+            animation: orbit-spin-1 2.2s linear infinite;
+        }
+        .orbit-2 .orbit-ring {
+            transform: rotate(60deg);
+            animation: orbit-spin-2 3s linear infinite;
+        }
+        .orbit-3 .orbit-ring {
+            transform: rotate(-60deg);
+            animation: orbit-spin-3 3.8s linear infinite;
+        }
+
+        @keyframes orbit-spin-1 {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+        @keyframes orbit-spin-2 {
+            from { transform: rotate(60deg); }
+            to   { transform: rotate(420deg); }
+        }
+        @keyframes orbit-spin-3 {
+            from { transform: rotate(-60deg); }
+            to   { transform: rotate(300deg); }
+        }
+
+        /* Electron dots on orbits */
+        .electron {
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #e8eeff;
+            box-shadow: 0 0 8px 3px rgba(160, 190, 255, 0.9);
+            top: -4.5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Glow rings behind atom */
+        .atom-glow {
+            position: absolute;
+            inset: -22px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(40, 80, 200, 0.18) 0%, transparent 70%);
+            animation: glow-pulse 2.6s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { transform: scale(1);   opacity: 0.6; }
+            50%       { transform: scale(1.18); opacity: 1; }
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- PAGE LOADER -->
+    <div id="page-loader" role="status" aria-label="Loading">
+        <div class="atom">
+            <div class="atom-glow"></div>
+
+            <!-- Orbit 1 -->
+            <div class="orbit orbit-1">
+                <div class="orbit-ring"></div>
+                <div class="electron"></div>
+            </div>
+
+            <!-- Orbit 2 -->
+            <div class="orbit orbit-2">
+                <div class="orbit-ring"></div>
+                <div class="electron"></div>
+            </div>
+
+            <!-- Orbit 3 -->
+            <div class="orbit orbit-3">
+                <div class="orbit-ring"></div>
+                <div class="electron"></div>
+            </div>
+
+            <!-- Nucleus -->
+            <div class="nucleus">
+                <div class="nucleus-ball"></div>
+                <div class="nucleus-ball"></div>
+                <div class="nucleus-ball"></div>
+                <div class="nucleus-ball"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var loader = document.getElementById('page-loader');
+            function hideLoader() {
+                if (loader) { loader.classList.add('hidden'); }
+            }
+            if (document.readyState === 'complete') {
+                setTimeout(hideLoader, 300);
+            } else {
+                window.addEventListener('load', function () {
+                    setTimeout(hideLoader, 300);
+                });
+            }
+        })();
+    </script>
+
     <div class="shell">
 
         <!-- HEADER -->
