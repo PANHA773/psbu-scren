@@ -1282,6 +1282,18 @@
             font-weight: 300;
         }
 
+        .ann-modal-hero {
+            margin-bottom: 16px;
+        }
+
+        .ann-modal-hero img {
+            width: 100%;
+            max-height: 260px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
         .ann-modal-body p { margin-bottom: 10px; }
         .ann-modal-body p:last-child { margin-bottom: 0; }
         .ann-modal-body ul { padding-left: 20px; margin-bottom: 10px; }
@@ -1825,6 +1837,9 @@
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z"/></svg>
                 {{ app()->getLocale() === 'en' ? 'Announcement' : 'សេចក្តីប្រកាស' }}
             </div>
+            <div class="ann-modal-hero" id="annModalImageWrap" style="display:none;">
+                <img id="annModalImage" src="" alt="Announcement image">
+            </div>
             <h2 class="ann-modal-title" id="annModalTitle"></h2>
             <span class="ann-modal-date" id="annModalDate"></span>
             <div class="ann-modal-body" id="annModalBody"></div>
@@ -1845,6 +1860,7 @@
                         'title'        => $a->title,
                         'content'      => $a->content,
                         'published_at' => $a->published_at ? $a->published_at->format('d M Y') : null,
+                        'image'        => $a->image ? asset($a->image) : null,
                     ];
                 })->values()->all();
             @endphp
@@ -1866,6 +1882,16 @@
                 titleEl.textContent    = ann.title;
                 dateEl.textContent     = ann.published_at || '';
                 bodyEl.innerHTML       = ann.content;
+                const imgWrap = document.getElementById('annModalImageWrap');
+                const imgEl   = document.getElementById('annModalImage');
+                if (ann.image) {
+                    imgEl.src = ann.image;
+                    imgEl.alt = ann.title || 'Announcement image';
+                    imgWrap.style.display = '';
+                } else {
+                    imgEl.src = '';
+                    imgWrap.style.display = 'none';
+                }
                 counterEl.textContent  = (currentIdx + 1) + ' / ' + announcements.length;
                 prevBtn.disabled       = announcements.length <= 1;
                 nextBtn.disabled       = announcements.length <= 1;
