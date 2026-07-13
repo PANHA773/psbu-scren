@@ -16,14 +16,20 @@
             --navy: #0D1B3E;
             --navy-d: #091022;
             --navy-m: #142254;
+            --navy-l: #1a2d5c;
             --gold: #C9963A;
             --gold-l: #E8B96A;
             --gold-pale: #F5DFA0;
             --gold-dim: rgba(201, 150, 58, 0.13);
+            --gold-bright: #D4A76A;
             --cream: #F4F0E8;
             --muted: rgba(255, 255, 255, 0.52);
+            --muted-light: rgba(255, 255, 255, 0.7);
             --border: rgba(255, 255, 255, 0.10);
+            --border-light: rgba(255, 255, 255, 0.15);
             --border-g: rgba(201, 150, 58, 0.30);
+            --accent: #FFB84D;
+            --success: #00E5A0;
         }
 
         /* ── POINTER SPOTLIGHT ── */
@@ -90,13 +96,15 @@
         .site-header {
             flex-shrink: 0;
             height: 72px;
-            background: var(--navy);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-l) 100%);
+            border-bottom: 1px solid var(--border-light);
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 36px;
             z-index: 30;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
         }
 
         .header-logo {
@@ -146,7 +154,7 @@
         .logo-en {
             margin-top: 5px;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 10.8px;
+            font-size: 8.5px;
             letter-spacing: 0.28em;
             text-transform: uppercase;
             color: var(--muted);
@@ -163,23 +171,26 @@
             display: flex;
             align-items: center;
             gap: 7px;
-            padding: 7px 16px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--muted);
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--muted-light);
             font-size: 12px;
             font-weight: 500;
             text-decoration: none;
             cursor: pointer;
-            transition: all .2s;
+            transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(8px);
         }
 
         .lang-pill:hover,
         .lang-pill.active {
-            background: var(--gold-dim);
+            background: rgba(201, 150, 58, 0.15);
             border-color: var(--border-g);
             color: var(--gold-l);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 150, 58, 0.1);
         }
 
         .lang-flag {
@@ -267,22 +278,24 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: rgba(9, 16, 34, .60);
-            border: 1px solid var(--border);
+            background: rgba(9, 16, 34, .70);
+            border: 1px solid var(--border-light);
             color: #fff;
             font-size: 22px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(8px);
-            transition: all .2s;
+            backdrop-filter: blur(12px);
+            transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .c-btn:hover {
-            background: var(--gold-dim);
-            border-color: var(--border-g);
+            background: rgba(201, 150, 58, .20);
+            border-color: var(--gold-l);
             color: var(--gold-l);
+            transform: translateY(-50%) scale(1.08);
+            box-shadow: 0 0 20px rgba(201, 150, 58, 0.3);
         }
 
         .c-btn.prev {
@@ -371,23 +384,28 @@
             transform: translateX(-50%);
             z-index: 10;
             display: flex;
-            gap: 7px;
+            gap: 8px;
         }
 
         .c-dot {
             width: 24px;
             height: 3px;
             border-radius: 2px;
-            background: rgba(255, 255, 255, .22);
+            background: rgba(255, 255, 255, .28);
             border: none;
             cursor: pointer;
             padding: 0;
-            transition: width .35s, background .35s;
+            transition: all .4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .c-dot:hover {
+            background: rgba(255, 255, 255, .5);
         }
 
         .c-dot.active {
-            width: 42px;
-            background: var(--gold);
+            width: 48px;
+            background: linear-gradient(90deg, var(--gold-l) 0%, var(--gold) 100%);
+            box-shadow: 0 0 12px rgba(232, 185, 106, 0.6);
         }
 
         /* ══════════════════════
@@ -397,37 +415,46 @@
             flex-shrink: 0;
             display: grid;
             grid-template-columns: 230px 1fr 250px;
-            gap: 0;
-            background: radial-gradient(circle at 50% 50%, #0d1e46 0%, #060d1f 100%);
+            gap: 12px;
+            background: linear-gradient(135deg, #0d1e46 0%, #060d1f 100%);
             background-image: 
                 radial-gradient(rgba(201, 150, 58, 0.08) 1px, transparent 1px),
-                radial-gradient(circle at 50% 50%, #0d1e46 0%, #060d1f 100%);
+                linear-gradient(135deg, #0d1e46 0%, #060d1f 100%);
             background-size: 20px 20px, 100% 100%;
             border-top: 1px solid rgba(201, 150, 58, 0.35);
-            box-shadow: 0 -10px 30px rgba(201, 150, 58, 0.06);
-            padding: 12px 0;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0px rgba(255, 255, 255, 0.05);
+            padding: 16px;
             min-height: 140px;
             position: relative;
         }
 
         /* STATS CARD */
         .stats {
-            background: rgba(13, 27, 62, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(201, 150, 58, 0.22);
+            background: linear-gradient(135deg, rgba(13, 27, 62, 0.65) 0%, rgba(13, 27, 62, 0.45) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(201, 150, 58, 0.25);
             border-radius: 14px;
-            margin: 6px 12px;
+            margin: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 12px 22px;
+            padding: 16px 22px;
             gap: 0;
             overflow: hidden;
             box-shadow: 
-                0 4px 24px rgba(0, 0, 0, 0.25),
-                inset 0 1px 1px rgba(255, 255, 255, 0.05);
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0px rgba(255, 255, 255, 0.08);
             position: relative;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(201, 150, 58, 0.05) 0%, transparent 100%);
+            pointer-events: none;
+            border-radius: 14px;
         }
 
         .stat {
@@ -468,11 +495,15 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 50px;
             font-weight: 600;
-            color: var(--gold);
+            background: linear-gradient(135deg, var(--gold-l) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             line-height: 1;
             text-shadow: 0 0 12px rgba(201, 150, 58, 0.4);
             display: inline-block;
             animation: stat-float 3.6s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(201, 150, 58, 0.3));
         }
 
         /* stagger the two numbers so they bob out of sync */
@@ -506,15 +537,25 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: rgba(13, 27, 62, 0.35);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: linear-gradient(135deg, rgba(13, 27, 62, 0.50) 0%, rgba(13, 27, 62, 0.35) 100%);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             border-radius: 14px;
-            margin: 6px 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            margin: 0;
+            border: 1px solid rgba(255, 255, 255, 0.10);
             box-shadow: 
-                inset 0 1px 1px rgba(255, 255, 255, 0.05),
+                inset 0 1px 1px rgba(255, 255, 255, 0.08),
                 0 8px 32px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(201, 150, 58, 0.03) 0%, transparent 100%);
+            pointer-events: none;
         }
 
         .skills-head {
@@ -569,13 +610,13 @@
             gap: 8px;
             text-decoration: none;
             padding: 14px 8px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 
                 0 4px 12px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0px rgba(255, 255, 255, 0.05);
-            transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+                inset 0 1px 0px rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -587,18 +628,18 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(201, 150, 58, 0.12) 0%, rgba(13, 27, 62, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(201, 150, 58, 0.15) 0%, rgba(13, 27, 62, 0.35) 100%);
             opacity: 0;
             z-index: -1;
-            transition: opacity 0.35s ease;
+            transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .sk:hover {
-            transform: translateY(-4px);
-            border-color: rgba(201, 150, 58, 0.55);
+            transform: translateY(-6px);
+            border-color: rgba(201, 150, 58, 0.6);
             box-shadow: 
-                0 10px 24px rgba(201, 150, 58, 0.18), 
-                inset 0 0 12px rgba(201, 150, 58, 0.15);
+                0 12px 28px rgba(201, 150, 58, 0.22), 
+                inset 0 0 12px rgba(201, 150, 58, 0.18);
         }
 
         .sk:hover::before {
@@ -612,11 +653,11 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%) scaleX(0);
-            width: 60%;
+            width: 65%;
             height: 2px;
-            background: linear-gradient(90deg, var(--gold-l) 0%, var(--gold) 100%);
+            background: linear-gradient(90deg, var(--gold-l) 0%, var(--gold) 50%, var(--gold-l) 100%);
             border-radius: 2px 2px 0 0;
-            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .sk:hover::after {
@@ -624,24 +665,24 @@
         }
 
         .sk-icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.8);
-            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.06);
             border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .sk:hover .sk-icon {
             color: var(--gold-l);
-            background: rgba(201, 150, 58, 0.15);
-            border-color: rgba(201, 150, 58, 0.4);
-            transform: scale(1.1) rotate(6deg);
-            box-shadow: 0 0 12px rgba(201, 150, 58, 0.25);
+            background: linear-gradient(135deg, rgba(201, 150, 58, 0.2) 0%, rgba(201, 150, 58, 0.1) 100%);
+            border-color: rgba(201, 150, 58, 0.5);
+            transform: scale(1.15) rotate(8deg);
+            box-shadow: 0 0 16px rgba(201, 150, 58, 0.35);
         }
 
         .sk-icon svg {
@@ -669,41 +710,51 @@
 
         /* QR */
         .qr-col {
-            background: rgba(13, 27, 62, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(201, 150, 58, 0.22);
+            background: linear-gradient(135deg, rgba(13, 27, 62, 0.65) 0%, rgba(13, 27, 62, 0.45) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(201, 150, 58, 0.25);
             border-radius: 14px;
-            margin: 6px 12px;
+            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            padding: 14px;
+            padding: 16px;
             box-shadow: 
-                0 4px 24px rgba(0, 0, 0, 0.25),
-                inset 0 1px 1px rgba(255, 255, 255, 0.05);
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0px rgba(255, 255, 255, 0.08);
             position: relative;
             z-index: 10;
+        }
+
+        .qr-col::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(201, 150, 58, 0.05) 0%, transparent 100%);
+            pointer-events: none;
+            border-radius: 14px;
         }
 
         .qr-frame {
             width: 140px;
             height: 140px;
             border: 2px solid var(--gold);
-            border-radius: 10px;
+            border-radius: 12px;
             background: #ffffff;
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         .qr-frame:hover {
-            transform: scale(1.06);
-            box-shadow: 0 10px 24px rgba(201, 150, 58, 0.25);
+            transform: scale(1.08) translateY(-4px);
+            box-shadow: 0 12px 32px rgba(201, 150, 58, 0.3);
+            border-color: var(--gold-l);
         }
 
         .qr-grid {
@@ -774,14 +825,15 @@
         }
 
         /* ══════════════════════
-           QR MODAL (Premium Zoom)
+           QR MODAL (Premium Glassmorphism)
         ══════════════════════ */
         .qr-modal {
             position: fixed;
             inset: 0;
             z-index: 1000;
-            background: rgba(9, 16, 34, 0.88);
-            backdrop-filter: blur(12px);
+            background: rgba(6, 13, 31, 0.80);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -796,17 +848,47 @@
         }
 
         .qr-modal-content {
-            background: var(--navy);
-            border: 2px solid var(--gold);
-            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(18, 32, 72, 0.97) 0%, rgba(10, 18, 45, 0.98) 100%);
+            border: 1px solid rgba(201, 150, 58, 0.45);
+            border-radius: 24px;
             width: 90%;
-            max-width: 440px;
-            padding: 40px 24px 30px;
+            max-width: 400px;
+            padding: 48px 32px 36px;
             position: relative;
-            transform: scale(0.9) translateY(20px);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(201, 150, 58, 0.2);
+            transform: scale(0.88) translateY(24px);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow:
+                0 32px 80px rgba(0, 0, 0, 0.75),
+                0 0 0 1px rgba(255,255,255,0.04) inset,
+                0 0 60px rgba(201, 150, 58, 0.12);
             text-align: center;
+            overflow: hidden;
+        }
+
+        /* Decorative top glow bar */
+        .qr-modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-l), var(--gold), var(--gold-l), transparent);
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 0 20px rgba(201,150,58,0.6);
+        }
+
+        /* Decorative background orb */
+        .qr-modal-content::after {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,150,58,0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .qr-modal.active .qr-modal-content {
@@ -815,32 +897,44 @@
 
         .qr-modal-close {
             position: absolute;
-            top: 14px;
-            right: 18px;
-            background: transparent;
-            border: none;
-            color: var(--muted);
-            font-size: 32px;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.5);
+            font-size: 18px;
             cursor: pointer;
-            transition: color 0.2s, transform 0.2s;
+            transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
             line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .qr-modal-close:hover {
+            background: rgba(201,150,58,0.18);
+            border-color: rgba(201,150,58,0.5);
             color: var(--gold-l);
-            transform: scale(1.1);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 12px rgba(201,150,58,0.25);
         }
 
         .qr-large-frame {
-            width: 240px;
-            height: 240px;
-            border: 3.5px solid var(--gold);
-            border-radius: 16px;
-            background: var(--cream);
+            width: 220px;
+            height: 220px;
+            border: 2px solid rgba(201,150,58,0.6);
+            border-radius: 20px;
+            background: #fff;
             position: relative;
             overflow: hidden;
-            margin: 0 auto 24px;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+            margin: 0 auto 28px;
+            box-shadow:
+                0 16px 48px rgba(0,0,0,0.55),
+                0 0 0 6px rgba(201,150,58,0.08),
+                0 0 30px rgba(201,150,58,0.15);
         }
 
         .qr-large-frame img {
@@ -855,13 +949,12 @@
             mix-blend-mode: multiply;
         }
 
-
-
         /* Large corner markers for large QR code modal */
         .qr-large-frame .qr-c {
             width: 42px;
             height: 42px;
             border-width: 5px;
+            border-color: rgba(201,150,58,0.9);
         }
 
         .qr-large-frame .qr-c.tl {
@@ -879,19 +972,38 @@
             left: 15px;
         }
 
-        .qr-modal-title {
-            font-family: 'Noto Serif Khmer', serif;
-            font-size: 22px;
-            font-weight: 700;
+        .qr-modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(201,150,58,0.18) 0%, rgba(201,150,58,0.08) 100%);
+            border: 1px solid rgba(201,150,58,0.4);
             color: var(--gold-l);
-            margin-bottom: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .qr-modal-title {
+            font-family: 'Noto Serif Khmer', 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(201,150,58,0.25);
         }
 
         .qr-modal-desc {
-            font-size: 13px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 400;
+            font-size: 12.5px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.58);
+            font-weight: 300;
+            max-width: 280px;
+            margin: 0 auto;
         }
 
         /* ══════════════════════
@@ -906,8 +1018,9 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.25);
             z-index: 20;
+            backdrop-filter: blur(8px);
         }
 
         .ct {
@@ -917,30 +1030,30 @@
             padding: 8px 24px;
             border-radius: 30px;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             border: 1px solid transparent;
         }
 
         .ct:hover {
-            background: rgba(201, 150, 58, 0.08);
+            background: rgba(201, 150, 58, 0.12);
             border-color: var(--border-g);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(201, 150, 58, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(201, 150, 58, 0.15);
         }
 
         .ct-icon {
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: var(--gold-dim);
+            background: linear-gradient(135deg, var(--gold-dim) 0%, rgba(201, 150, 58, 0.08) 100%);
             border: 1px solid var(--border-g);
             color: var(--gold-l);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .ct-icon svg {
@@ -949,10 +1062,10 @@
         }
 
         .ct:hover .ct-icon {
-            background: var(--gold);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-l) 100%);
             color: var(--navy-d);
-            transform: scale(1.1) rotate(12deg);
-            box-shadow: 0 0 10px rgba(201, 150, 58, 0.3);
+            transform: scale(1.12) rotate(12deg);
+            box-shadow: 0 0 14px rgba(201, 150, 58, 0.4);
         }
 
         .ct-txt {
@@ -993,7 +1106,7 @@
             .hero { height: 380px; }
             .hero-body { padding: clamp(10px, 4vw, 18px) clamp(12px, 6vw, 48px); }
             .c-btn { display: none; }
-            .bottom { grid-template-columns: 1fr; padding: 16px 12px; gap: 16px; }
+            .bottom { grid-template-columns: 1fr; padding: 16px; gap: 16px; }
             .stats, .skills, .qr-col { padding: 16px 20px; margin: 0; border-radius: 12px; }
             .skills-grid { grid-template-columns: repeat(auto-fit, minmax(95px,1fr)); }
         }
@@ -1081,7 +1194,7 @@
 
         @media (max-width: 480px) {
             .site-header { padding: 0 12px; height: 56px; }
-            .logo-seal { width: 48px; height: 48px; font-size: 12px; }
+            .logo-seal { width: 46px; height: 48px; font-size: 12px; }
             .hero-seal { width: 48px; height: 48px; font-size: 18px; }
             .hero-kh { font-size: clamp(14px, 6vw, 20px); }
             .hero-en { font-size: clamp(11px, 4vw, 16px); }
@@ -1100,10 +1213,11 @@
             background: linear-gradient(90deg, #0b1630 0%, #0d1e46 100%);
             border-top: 1px solid rgba(201, 150, 58, 0.4);
             border-bottom: 1px solid rgba(201, 150, 58, 0.25);
-            height: 40px;
+            height: 42px;
             overflow: hidden;
             position: relative;
             z-index: 25;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .ann-label {
@@ -1112,7 +1226,7 @@
             align-items: center;
             gap: 8px;
             padding: 0 28px 0 18px;
-            background: var(--gold);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
             color: var(--navy-d);
             font-family: 'Noto Serif Khmer', 'DM Sans', sans-serif;
             font-size: 10.5px;
@@ -1123,6 +1237,7 @@
             position: relative;
             z-index: 2;
             clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+            box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.2);
         }
 
         .ann-label::after {
@@ -1167,15 +1282,33 @@
             gap: 10px;
             padding: 0 28px;
             font-size: 12.5px;
-            color: rgba(255, 255, 255, 0.88);
+            color: rgba(255, 255, 255, 0.9);
             font-weight: 400;
             letter-spacing: .01em;
             cursor: pointer;
-            transition: color .2s;
+            transition: all .35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .ann-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-l), transparent);
+            transform: scaleX(0);
+            transition: transform .35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .ann-item:hover {
             color: var(--gold-l);
+            transform: translateY(-1px);
+        }
+
+        .ann-item:hover::after {
+            transform: scaleX(1);
         }
 
         .ann-sep {
@@ -1188,19 +1321,23 @@
             flex-shrink: 0;
         }
 
-        /* Announcement Modal */
+        /* ══════════════════════
+           ANNOUNCEMENT MODAL (Premium)
+        ══════════════════════ */
         .ann-modal {
             position: fixed;
             inset: 0;
             z-index: 2000;
-            background: rgba(9, 16, 34, 0.90);
-            backdrop-filter: blur(14px);
+            background: rgba(5, 10, 26, 0.82);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.35s ease;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 20px;
         }
 
         .ann-modal.active {
@@ -1209,126 +1346,216 @@
         }
 
         .ann-modal-box {
-            background: linear-gradient(160deg, #0f2050 0%, #0a1530 100%);
-            border: 1.5px solid rgba(201, 150, 58, 0.5);
-            border-radius: 18px;
-            width: 90%;
-            max-width: 560px;
-            max-height: 80vh;
+            background: linear-gradient(155deg, rgba(16, 28, 68, 0.98) 0%, rgba(9, 16, 40, 0.99) 100%);
+            border: 1px solid rgba(201, 150, 58, 0.35);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 580px;
+            max-height: 85vh;
             overflow-y: auto;
-            padding: 36px 32px 28px;
+            padding: 0;
             position: relative;
-            transform: scale(0.92) translateY(16px);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 24px 60px rgba(0,0,0,.7), 0 0 40px rgba(201,150,58,.12);
+            transform: scale(0.90) translateY(20px);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow:
+                0 32px 80px rgba(0,0,0,.80),
+                0 0 0 1px rgba(255,255,255,0.04) inset,
+                0 0 60px rgba(201,150,58,0.10);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(201,150,58,0.3) transparent;
+        }
+
+        .ann-modal-box::-webkit-scrollbar { width: 5px; }
+        .ann-modal-box::-webkit-scrollbar-track { background: transparent; }
+        .ann-modal-box::-webkit-scrollbar-thumb {
+            background: rgba(201,150,58,0.35);
+            border-radius: 4px;
+        }
+
+        /* Decorative top accent line */
+        .ann-modal-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 12%;
+            right: 12%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-l), var(--gold), var(--gold-l), transparent);
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 0 24px rgba(201,150,58,0.55);
+            z-index: 1;
         }
 
         .ann-modal.active .ann-modal-box {
             transform: scale(1) translateY(0);
         }
 
-        .ann-modal-close {
-            position: absolute;
-            top: 14px;
-            right: 18px;
-            background: transparent;
-            border: none;
-            color: var(--muted);
-            font-size: 30px;
-            cursor: pointer;
-            transition: color .2s, transform .2s;
-            line-height: 1;
+        /* Inner padding container */
+        .ann-modal-inner {
+            padding: 36px 36px 32px;
         }
 
-        .ann-modal-close:hover { color: var(--gold-l); transform: scale(1.1); }
+        .ann-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.10);
+            color: rgba(255,255,255,0.45);
+            font-size: 17px;
+            cursor: pointer;
+            transition: all 0.28s cubic-bezier(0.4,0,0.2,1);
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .ann-modal-close:hover {
+            background: rgba(201,150,58,0.18);
+            border-color: rgba(201,150,58,0.5);
+            color: var(--gold-l);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 14px rgba(201,150,58,0.28);
+        }
 
         .ann-modal-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 4px 12px;
+            gap: 7px;
+            padding: 5px 14px;
             border-radius: 20px;
-            background: var(--gold-dim);
-            border: 1px solid var(--border-g);
+            background: linear-gradient(135deg, rgba(201,150,58,0.18) 0%, rgba(201,150,58,0.07) 100%);
+            border: 1px solid rgba(201,150,58,0.4);
             color: var(--gold-l);
             font-family: 'Noto Serif Khmer', 'DM Sans', sans-serif;
             font-size: 10px;
             font-weight: 700;
-            letter-spacing: .1em;
+            letter-spacing: .12em;
             text-transform: uppercase;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
+        }
+
+        .ann-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 8px var(--gold);
+            animation: pulse-dot 2s infinite;
+            flex-shrink: 0;
         }
 
         .ann-modal-title {
             font-family: 'Noto Serif Khmer', 'Cormorant Garamond', serif;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
-            color: #fff;
-            margin-bottom: 16px;
-            line-height: 1.4;
+            color: #ffffff;
+            margin-bottom: 10px;
+            line-height: 1.45;
+            text-shadow: 0 2px 12px rgba(201,150,58,0.18);
         }
 
         .ann-modal-date {
             font-size: 11px;
-            color: var(--muted);
-            margin-bottom: 18px;
-            display: block;
+            color: rgba(255,255,255,0.38);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.04em;
+        }
+
+        .ann-modal-date::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 1px;
+            background: rgba(201,150,58,0.5);
         }
 
         .ann-modal-body {
             font-size: 13.5px;
-            line-height: 1.75;
-            color: rgba(255,255,255,.78);
+            line-height: 1.8;
+            color: rgba(255,255,255,.70);
             font-weight: 300;
         }
 
         .ann-modal-hero {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.5);
         }
 
         .ann-modal-hero img {
             width: 100%;
-            max-height: 260px;
+            max-height: 280px;
             object-fit: cover;
-            border-radius: 12px;
             display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .ann-modal-hero:hover img {
+            transform: scale(1.03);
         }
 
         .ann-modal-body p { margin-bottom: 10px; }
         .ann-modal-body p:last-child { margin-bottom: 0; }
         .ann-modal-body ul { padding-left: 20px; margin-bottom: 10px; }
-        .ann-modal-body strong { color: var(--gold-l); }
+        .ann-modal-body strong { color: var(--gold-l); font-weight: 600; }
+
+        .ann-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201,150,58,0.25), transparent);
+            margin: 24px 0 0;
+        }
 
         .ann-nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 24px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
+            padding: 20px 36px 24px;
+            gap: 12px;
         }
 
         .ann-nav-btn {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 7px 16px;
-            border-radius: 8px;
-            border: 1px solid var(--border-g);
-            background: var(--gold-dim);
+            gap: 7px;
+            padding: 9px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(201,150,58,0.35);
+            background: linear-gradient(135deg, rgba(201,150,58,0.12) 0%, rgba(201,150,58,0.05) 100%);
             color: var(--gold-l);
-            font-size: 11px;
+            font-size: 11.5px;
             font-weight: 600;
             cursor: pointer;
-            transition: all .2s;
+            transition: all .25s cubic-bezier(0.4,0,0.2,1);
+            letter-spacing: 0.03em;
         }
 
-        .ann-nav-btn:hover { background: rgba(201,150,58,.22); }
-        .ann-nav-btn:disabled { opacity: .3; cursor: default; }
+        .ann-nav-btn:hover {
+            background: linear-gradient(135deg, rgba(201,150,58,0.25) 0%, rgba(201,150,58,0.12) 100%);
+            border-color: rgba(201,150,58,0.6);
+            box-shadow: 0 4px 16px rgba(201,150,58,0.18);
+            transform: translateY(-1px);
+        }
+        .ann-nav-btn:disabled { opacity: .28; cursor: default; transform: none; box-shadow: none; }
 
         .ann-counter {
-            font-size: 11px;
-            color: var(--muted);
+            font-size: 11.5px;
+            color: rgba(255,255,255,0.35);
+            font-weight: 500;
+            background: rgba(255,255,255,0.05);
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+            letter-spacing: 0.05em;
         }
 
         @media (min-width: 1001px) {
@@ -1491,6 +1718,384 @@
             0%, 100% { transform: scale(1);   opacity: 0.6; }
             50%       { transform: scale(1.18); opacity: 1; }
         }
+
+        /* ══════════════════════
+           LEADER DRAWER
+        ══════════════════════ */
+        .leader-trigger {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(201,150,58,0.4);
+            background: linear-gradient(135deg, rgba(201,150,58,0.14) 0%, rgba(201,150,58,0.06) 100%);
+            color: var(--gold-l);
+            font-family: 'Noto Serif Khmer','DM Sans',sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .3s cubic-bezier(0.4,0,0.2,1);
+            white-space: nowrap;
+            letter-spacing: .03em;
+        }
+        .leader-trigger:hover {
+            background: linear-gradient(135deg, rgba(201,150,58,0.26) 0%, rgba(201,150,58,0.12) 100%);
+            border-color: rgba(201,150,58,0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(201,150,58,0.2);
+        }
+        .leader-trigger svg { flex-shrink: 0; }
+
+        /* Overlay */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            background: rgba(4, 8, 22, 0.72);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .drawer-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Drawer panel */
+        .leader-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 3001;
+            width: 380px;
+            max-width: 95vw;
+            background: linear-gradient(170deg, rgba(14,26,64,0.99) 0%, rgba(8,14,38,0.99) 100%);
+            border-left: 1px solid rgba(201,150,58,0.30);
+            box-shadow: -20px 0 80px rgba(0,0,0,0.65), -1px 0 0 rgba(255,255,255,0.03);
+            transform: translateX(100%);
+            transition: transform 0.48s cubic-bezier(0.32,0.72,0,1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .leader-drawer.open {
+            transform: translateX(0);
+        }
+
+        /* Drawer top glow */
+        .leader-drawer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-l), var(--gold), var(--gold-l), transparent);
+            box-shadow: 0 0 20px rgba(201,150,58,0.6);
+        }
+
+        /* Drawer header */
+        .drawer-head {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid rgba(201,150,58,0.12);
+        }
+        .drawer-head-title {
+            font-family: 'Noto Serif Khmer','DM Sans',sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold-l);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .drawer-head-title svg { opacity: .75; }
+        .drawer-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.10);
+            color: rgba(255,255,255,0.45);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .25s cubic-bezier(0.4,0,0.2,1);
+            flex-shrink: 0;
+        }
+        .drawer-close:hover {
+            background: rgba(201,150,58,0.18);
+            border-color: rgba(201,150,58,0.5);
+            color: var(--gold-l);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 12px rgba(201,150,58,0.25);
+        }
+
+        /* Drawer body */
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 28px 24px 32px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(201,150,58,0.25) transparent;
+        }
+        .drawer-body::-webkit-scrollbar { width: 4px; }
+        .drawer-body::-webkit-scrollbar-track { background: transparent; }
+        .drawer-body::-webkit-scrollbar-thumb { background: rgba(201,150,58,0.3); border-radius: 4px; }
+
+        /* Profile card */
+        .leader-profile-card {
+            background: linear-gradient(135deg, rgba(201,150,58,0.08) 0%, rgba(13,27,62,0.6) 100%);
+            border: 1px solid rgba(201,150,58,0.22);
+            border-radius: 20px;
+            padding: 28px 20px 22px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
+        /* card shimmer orb */
+        .leader-profile-card::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,150,58,0.10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .leader-avatar-ring {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--gold-l), var(--gold), var(--gold-pale), var(--gold));
+            margin: 0 auto 16px;
+            box-shadow: 0 0 0 4px rgba(201,150,58,0.15), 0 12px 36px rgba(0,0,0,0.5);
+            animation: avatar-glow 3s ease-in-out infinite;
+        }
+        @keyframes avatar-glow {
+            0%,100% { box-shadow: 0 0 0 4px rgba(201,150,58,0.15), 0 12px 36px rgba(0,0,0,0.5); }
+            50%      { box-shadow: 0 0 0 6px rgba(201,150,58,0.30), 0 12px 36px rgba(0,0,0,0.5), 0 0 30px rgba(201,150,58,0.18); }
+        }
+        .leader-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg, #1a3060, var(--navy-d));
+        }
+        .leader-avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a3468 0%, #0d1b3e 100%);
+            color: var(--gold-l);
+        }
+
+        .leader-role-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 12px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(201,150,58,0.20) 0%, rgba(201,150,58,0.08) 100%);
+            border: 1px solid rgba(201,150,58,0.40);
+            color: var(--gold-l);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .leader-role-dot {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 6px var(--gold);
+            animation: pulse-dot 2s infinite;
+        }
+
+        .leader-name {
+            font-family: 'Noto Serif Khmer','Cormorant Garamond',serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+            line-height: 1.35;
+            text-shadow: 0 2px 10px rgba(201,150,58,0.15);
+        }
+        .leader-name-en {
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            letter-spacing: .05em;
+            margin-bottom: 14px;
+        }
+
+        .leader-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .leader-meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .leader-meta-val {
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 22px;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--gold-l), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        .leader-meta-lbl {
+            font-family: 'Noto Serif Khmer',sans-serif;
+            font-size: 9.5px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: .04em;
+        }
+        .leader-meta-sep {
+            width: 1px;
+            height: 32px;
+            background: rgba(201,150,58,0.25);
+        }
+
+        /* Message section */
+        .leader-message-section {
+            margin-bottom: 20px;
+        }
+        .leader-section-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .leader-section-label span {
+            font-family: 'Noto Serif Khmer','DM Sans',sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: .10em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .leader-section-rule {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(201,150,58,0.4) 0%, transparent 100%);
+        }
+        .leader-section-label-bar {
+            width: 3px;
+            height: 14px;
+            border-radius: 2px;
+            background: linear-gradient(180deg, var(--gold-l), var(--gold));
+            flex-shrink: 0;
+        }
+
+        .leader-message-box {
+            background: linear-gradient(135deg, rgba(13,27,62,0.55) 0%, rgba(8,16,38,0.45) 100%);
+            border: 1px solid rgba(201,150,58,0.15);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 14px 14px 0;
+            padding: 18px 18px 18px 20px;
+            position: relative;
+        }
+        .leader-message-box::before {
+            content: '\201C';
+            position: absolute;
+            top: -6px;
+            left: 14px;
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 64px;
+            line-height: 1;
+            color: rgba(201,150,58,0.20);
+            pointer-events: none;
+        }
+        .leader-message-text {
+            font-family: 'Noto Serif Khmer','DM Sans',sans-serif;
+            font-size: 13px;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.72);
+            font-weight: 300;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        .leader-message-sig {
+            margin-top: 12px;
+            text-align: right;
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 12px;
+            color: var(--gold-l);
+            font-style: italic;
+            opacity: .75;
+        }
+
+        /* Social / contact row */
+        .leader-contact-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .leader-contact-btn {
+            flex: 1;
+            min-width: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 9px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(201,150,58,0.28);
+            background: linear-gradient(135deg, rgba(201,150,58,0.10) 0%, rgba(201,150,58,0.04) 100%);
+            color: rgba(255,255,255,0.7);
+            font-size: 11.5px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all .28s cubic-bezier(0.4,0,0.2,1);
+        }
+        .leader-contact-btn:hover {
+            background: linear-gradient(135deg, rgba(201,150,58,0.22) 0%, rgba(201,150,58,0.10) 100%);
+            border-color: rgba(201,150,58,0.55);
+            color: var(--gold-l);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(201,150,58,0.15);
+        }
+        .leader-contact-btn svg { flex-shrink: 0; }
+
+        @media (max-width: 480px) {
+            .leader-trigger span { display: none; }
+            .leader-trigger { padding: 8px 10px; }
+            .leader-drawer { width: 92vw; }
+        }
     </style>
 </head>
 
@@ -1562,6 +2167,15 @@
                 <a href="{{ route('lang.switch', 'kh') }}" class="lang-pill {{ app()->getLocale() === 'kh' ? 'active' : '' }}"><span class="lang-flag">🇰🇭</span> Khmer</a>
                 <a href="{{ route('lang.switch', 'en') }}" class="lang-pill {{ app()->getLocale() === 'en' ? 'active' : '' }}"><span class="lang-flag">🇬🇧</span> English</a>
                 <a href="https://inter.psbu.edu.kh/" class="intl-pill">{{ app()->getLocale() === 'en' ? 'International Project' : 'គម្រោងអន្តរជាតិ' }}</a>
+                <!-- Leader Drawer Trigger -->
+                <button class="leader-trigger" id="leaderDrawerBtn" aria-label="Leader Profile">
+                    @if(isset($leader) && $leader->image)
+                        <img src="{{ asset($leader->image) }}" alt="Rector Profile" style="width: 18px; height: 18px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(201,150,58,0.6);">
+                    @else
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    @endif
+                    <span>{{ app()->getLocale() === 'en' ? 'Rector' : 'នាយក' }}</span>
+                </button>
             </div>
         </header>
 
@@ -1780,10 +2394,17 @@
     <!-- QR MODAL STRUCTURE -->
     <div id="qrModal" class="qr-modal">
         <div class="qr-modal-content">
-            <button class="qr-modal-close" id="qrCloseBtn">&times;</button>
+            <button class="qr-modal-close" id="qrCloseBtn" aria-label="Close">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="qr-modal-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 6.5v3h-3v-3h3M11 5H5v6h6V5zm-1.5 9.5v3h-3v-3h3M11 13H5v6h6v-6zm6.5-6.5v3h-3v-3h3M22 5h-6v6h6V5zm-6 8h1.5v1.5H16V13zm1.5 1.5H19V16h-1.5v-1.5zM19 13h1.5v1.5H19V13zm-3 3h1.5v1.5H16V16zm1.5 1.5H19V19h-1.5v-1.5zM19 16h1.5v1.5H19V16zm1.5 1.5H22V19h-1.5v-1.5zM22 13h-1.5v1.5H22V13z"/></svg>
+                {{ app()->getLocale() === 'en' ? 'QR Code' : 'កូដ QR' }}
+            </div>
             <div class="qr-large-frame">
                 <img src="images/qr_code.png" alt="QR Code Large">
                 <div class="qr-grid"></div>
+                <div class="qr-laser"></div>
                 <div class="qr-c tl"></div>
                 <div class="qr-c tr"></div>
                 <div class="qr-c bl"></div>
@@ -1832,21 +2453,32 @@
     @if($announcements->isNotEmpty())
     <div id="annModal" class="ann-modal">
         <div class="ann-modal-box">
-            <button class="ann-modal-close" id="annModalClose">&times;</button>
-            <div class="ann-modal-badge">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z"/></svg>
-                {{ app()->getLocale() === 'en' ? 'Announcement' : 'សេចក្តីប្រកាស' }}
+            <button class="ann-modal-close" id="annModalClose" aria-label="Close">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="ann-modal-inner">
+                <div class="ann-modal-badge">
+                    <span class="ann-badge-dot"></span>
+                    {{ app()->getLocale() === 'en' ? 'Announcement' : 'សេចក្តីប្រកាស' }}
+                </div>
+                <div class="ann-modal-hero" id="annModalImageWrap" style="display:none;">
+                    <img id="annModalImage" src="" alt="Announcement image">
+                </div>
+                <h2 class="ann-modal-title" id="annModalTitle"></h2>
+                <span class="ann-modal-date" id="annModalDate"></span>
+                <div class="ann-modal-body" id="annModalBody"></div>
             </div>
-            <div class="ann-modal-hero" id="annModalImageWrap" style="display:none;">
-                <img id="annModalImage" src="" alt="Announcement image">
-            </div>
-            <h2 class="ann-modal-title" id="annModalTitle"></h2>
-            <span class="ann-modal-date" id="annModalDate"></span>
-            <div class="ann-modal-body" id="annModalBody"></div>
+            <div class="ann-divider"></div>
             <div class="ann-nav">
-                <button class="ann-nav-btn" id="annPrevBtn">&#8249; {{ app()->getLocale() === 'en' ? 'Prev' : 'មុន' }}</button>
+                <button class="ann-nav-btn" id="annPrevBtn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+                    {{ app()->getLocale() === 'en' ? 'Previous' : 'មុន' }}
+                </button>
                 <span class="ann-counter" id="annCounter"></span>
-                <button class="ann-nav-btn" id="annNextBtn">{{ app()->getLocale() === 'en' ? 'Next' : 'បន្ទាប់' }} &#8250;</button>
+                <button class="ann-nav-btn" id="annNextBtn">
+                    {{ app()->getLocale() === 'en' ? 'Next' : 'បន្ទាប់' }}
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
             </div>
         </div>
     </div>
@@ -1942,6 +2574,150 @@
         })();
     </script>
     @endif
+
+    <!-- LEADER DRAWER OVERLAY -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- LEADER DRAWER -->
+    <aside class="leader-drawer" id="leaderDrawer" role="dialog" aria-modal="true" aria-label="Leader Profile">
+        <!-- Drawer Header -->
+        <div class="drawer-head">
+            <div class="drawer-head-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                {{ app()->getLocale() === 'en' ? 'Leader Profile' : 'ប្រវត្តិអ្នកដឹកនាំ' }}
+            </div>
+            <button class="drawer-close" id="drawerCloseBtn" aria-label="Close">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+
+        <!-- Drawer Body -->
+        <div class="drawer-body">
+
+            <!-- Profile Card -->
+            <div class="leader-profile-card">
+                <div class="leader-avatar-ring">
+                    @if(isset($leader) && $leader->image)
+                        <img src="{{ asset($leader->image) }}" alt="{{ $leader->name }}" class="leader-avatar">
+                    @else
+                        <div class="leader-avatar-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                    @endif
+                </div>
+
+                <div class="leader-role-badge">
+                    <span class="leader-role-dot"></span>
+                    {{ app()->getLocale() === 'en' ? (isset($leader) ? ($leader->role_en ?? 'Rector') : 'Rector') : (isset($leader) ? ($leader->role_kh ?? 'នាយក') : 'នាយក') }}
+                </div>
+
+                <div class="leader-name">
+                    {{ isset($leader) ? ($leader->name_kh ?? $leader->name ?? 'ព្រះតេជគុណ ប្រាជ្ញ វិជ្ជា') : 'ព្រះតេជគុណ ប្រាជ្ញ វិជ្ជា' }}
+                </div>
+                <div class="leader-name-en">
+                    {{ isset($leader) ? ($leader->name_en ?? $leader->name ?? 'Ven. Pranh Vichhea') : 'Ven. Pranh Vichhea' }}
+                </div>
+
+                <div class="leader-meta">
+                    <div class="leader-meta-item">
+                        <span class="leader-meta-val">{{ isset($leader) ? ($leader->years_experience ?? '10') : '10' }}+</span>
+                        <span class="leader-meta-lbl">{{ app()->getLocale() === 'en' ? 'Years' : 'ឆ្នាំ' }}</span>
+                    </div>
+                    <div class="leader-meta-sep"></div>
+                    <div class="leader-meta-item">
+                        <span class="leader-meta-val">{{ isset($leader) ? ($leader->publications ?? '24') : '24' }}</span>
+                        <span class="leader-meta-lbl">{{ app()->getLocale() === 'en' ? 'Publications' : 'បោះពុម្ព' }}</span>
+                    </div>
+                    <div class="leader-meta-sep"></div>
+                    <div class="leader-meta-item">
+                        <span class="leader-meta-val">{{ isset($leader) ? ($leader->awards ?? '8') : '8' }}</span>
+                        <span class="leader-meta-lbl">{{ app()->getLocale() === 'en' ? 'Awards' : 'រង្វាន់' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message Section -->
+            <div class="leader-message-section">
+                <div class="leader-section-label">
+                    <div class="leader-section-label-bar"></div>
+                    <span>{{ app()->getLocale() === 'en' ? 'Message from the Rector' : 'សារពីនាយក' }}</span>
+                    <div class="leader-section-rule"></div>
+                </div>
+
+                <div class="leader-message-box">
+                    <p class="leader-message-text">
+                        @if(isset($leader) && $leader->message)
+                            {{ app()->getLocale() === 'en' ? ($leader->message_en ?? $leader->message) : $leader->message }}
+                        @else
+                            @if(app()->getLocale() === 'en')
+                                Education is the foundation of wisdom. At Preah Sihamoniraja Buddhist University, we are dedicated to nurturing the next generation of compassionate, knowledgeable, and virtuous leaders through the harmonious integration of Buddhist values and modern academic excellence.
+                            @else
+                                ការអប់រំគឺជាគ្រឹះនៃប្រាជ្ញា។ នៅពុទ្ធិកសាកលវិទ្យាល័យព្រះសីហមុនីរាជា យើងប្ដេជ្ញាចិត្តក្នុងការចិញ្ចឹមបីបាច់មនុស្សសម្រាប់ជំនាន់ក្រោយ ដែលមានចំណេះដឹង មានក្តីមេត្តា និងមានសីលធម៌ខ្ពស់ តាមរយៈការបញ្ចូលគ្នារវាងតម្លៃព្រះពុទ្ធសាសនា និងការអប់រំទំនើប។
+                            @endif
+                        @endif
+                    </p>
+                    <div class="leader-message-sig">
+                        — {{ isset($leader) ? ($leader->name_en ?? 'Ven. Pranh Vichhea') : 'Ven. Pranh Vichhea' }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Row -->
+            <div class="leader-contact-row">
+                @if(isset($leader) && $leader->facebook)
+                <a href="{{ $leader->facebook }}" class="leader-contact-btn" target="_blank" rel="noopener noreferrer">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    {{ app()->getLocale() === 'en' ? 'Facebook' : 'ហ្វេសប៊ុក' }}
+                </a>
+                @endif
+                @if(isset($leader) && $leader->tiktok)
+                <a href="{{ $leader->tiktok }}" class="leader-contact-btn" target="_blank" rel="noopener noreferrer">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                    {{ app()->getLocale() === 'en' ? 'TikTok' : 'ទីកតុក' }}
+                </a>
+                @endif
+                @if(isset($leader) && $leader->email)
+                <a href="mailto:{{ $leader->email }}" class="leader-contact-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    {{ app()->getLocale() === 'en' ? 'Email' : 'អ៊ីមែល' }}
+                </a>
+                @endif
+            </div>
+
+        </div>
+    </aside>
+
+    <!-- DRAWER JS -->
+    <script>
+        (function () {
+            const drawerBtn    = document.getElementById('leaderDrawerBtn');
+            const drawer       = document.getElementById('leaderDrawer');
+            const overlay      = document.getElementById('drawerOverlay');
+            const closeBtn     = document.getElementById('drawerCloseBtn');
+
+            function openDrawer() {
+                drawer.classList.add('open');
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeDrawer() {
+                drawer.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            if (drawerBtn)  drawerBtn.addEventListener('click', openDrawer);
+            if (closeBtn)   closeBtn.addEventListener('click', closeDrawer);
+            if (overlay)    overlay.addEventListener('click', closeDrawer);
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && drawer.classList.contains('open')) {
+                    closeDrawer();
+                }
+            });
+        })();
+    </script>
 
     <!-- Pointer spotlight -->
     <div id="pointer-light" aria-hidden="true"></div>

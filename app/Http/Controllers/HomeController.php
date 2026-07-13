@@ -8,6 +8,7 @@ use App\Models\Stat;
 use App\Models\Skill;
 use App\Models\Contact;
 use App\Models\Announcement;
+use App\Models\Leader;
 
 class HomeController extends Controller
 {
@@ -31,6 +32,10 @@ class HomeController extends Controller
             ->orderBy('order', 'asc')
             ->get();
 
-        return view('index', compact('sliders', 'stats', 'skills', 'contacts', 'announcements'));
+        $leader = Leader::where('is_active', true)
+            ->orderBy('order', 'asc')
+            ->first();
+
+        return view('index', compact('sliders', 'stats', 'skills', 'contacts', 'announcements', 'leader'));
     }
 }
