@@ -137,8 +137,8 @@
 
         .logo-kh {
             font-family: 'Noto Serif Khmer', serif;
-            font-size: 23px;
-            font-weight: 700;
+            font-size: 18px;
+            font-weight: 600;
             color: var(--gold-l);
             line-height: 1;
         }
@@ -350,7 +350,7 @@
 
         .hero-motto span {
             font-family: 'Noto Serif Khmer', serif;
-            font-size: clamp(13px, 1.8vw, 20px);
+            font-size: clamp(13px, 1.8vw, 18px);
             font-weight: 600;
             color: var(--gold-pale);
         }
@@ -393,7 +393,7 @@
         /* ══════════════════════
            BOTTOM ROW
         ══════════════════════ */
-         .bottom {
+            .bottom {
             flex-shrink: 0;
             display: grid;
             grid-template-columns: 230px 1fr 250px;
