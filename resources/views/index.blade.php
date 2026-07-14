@@ -194,7 +194,13 @@
         }
 
         .lang-flag {
-            font-size: 15px;
+            width: 20px;
+            height: 14px;
+            object-fit: cover;
+            border-radius: 2px;
+            display: inline-block;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+            flex-shrink: 0;
         }
 
         .intl-pill {
@@ -2164,8 +2170,8 @@
                 </div>
             </a>
             <div class="header-right">
-                <a href="{{ route('lang.switch', 'kh') }}" class="lang-pill {{ app()->getLocale() === 'kh' ? 'active' : '' }}"><span class="lang-flag">🇰🇭</span> Khmer</a>
-                <a href="{{ route('lang.switch', 'en') }}" class="lang-pill {{ app()->getLocale() === 'en' ? 'active' : '' }}"><span class="lang-flag">🇬🇧</span> English</a>
+                <a href="{{ route('lang.switch', 'kh') }}" class="lang-pill {{ app()->getLocale() === 'kh' ? 'active' : '' }}"><img src="{{ asset('images/kh.svg') }}" alt="Khmer" class="lang-flag"> Khmer</a>
+                <a href="{{ route('lang.switch', 'en') }}" class="lang-pill {{ app()->getLocale() === 'en' ? 'active' : '' }}"><img src="{{ asset('images/gb.svg') }}" alt="English" class="lang-flag"> English</a>
                 <a href="https://inter.psbu.edu.kh/" class="intl-pill">{{ app()->getLocale() === 'en' ? 'International Project' : 'គម្រោងអន្តរជាតិ' }}</a>
                 <!-- Leader Drawer Trigger -->
                 <button class="leader-trigger" id="leaderDrawerBtn" aria-label="Leader Profile">
@@ -2174,7 +2180,7 @@
                     @else
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     @endif
-                    <span>{{ app()->getLocale() === 'en' ? 'Rector' : 'នាយក' }}</span>
+                    <span>{{ app()->getLocale() === 'en' ? 'Rector' : 'ព្រះសាកលវិទ្យាធិការ' }}</span>
                 </button>
             </div>
         </header>
