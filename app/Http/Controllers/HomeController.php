@@ -9,6 +9,7 @@ use App\Models\Skill;
 use App\Models\Contact;
 use App\Models\Announcement;
 use App\Models\Leader;
+use App\Models\Partner;
 
 class HomeController extends Controller
 {
@@ -36,6 +37,10 @@ class HomeController extends Controller
             ->orderBy('order', 'asc')
             ->first();
 
-        return view('index', compact('sliders', 'stats', 'skills', 'contacts', 'announcements', 'leader'));
+        $partners = Partner::where('is_active', true)
+            ->orderBy('order', 'asc')
+            ->get();
+
+        return view('index', compact('sliders', 'stats', 'skills', 'contacts', 'announcements', 'leader', 'partners'));
     }
 }

@@ -1039,6 +1039,10 @@
             transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             border: 1px solid transparent;
+            background: transparent;
+            font-family: inherit;
+            color: inherit;
+            outline: none;
         }
 
         .ct:hover {
@@ -2097,10 +2101,632 @@
         }
         .leader-contact-btn svg { flex-shrink: 0; }
 
+        /* ══════════════════════
+           PARTNER LOGOS SECTION
+        ══════════════════════ */
+        .partners-section {
+            padding: 28px 36px;
+            background: linear-gradient(180deg, rgba(13,27,62,0.4) 0%, rgba(9,16,34,0.7) 100%);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .partners-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .partners-title {
+            font-family: 'Noto Serif Khmer', 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold-l);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .partners-title svg {
+            color: var(--gold);
+        }
+        .partners-rule {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(201,150,58,0.3) 0%, transparent 100%);
+        }
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            align-items: stretch;
+        }
+        .partner-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            backdrop-filter: blur(8px);
+        }
+        .partner-card:hover {
+            background: linear-gradient(135deg, rgba(201,150,58,0.14) 0%, rgba(13,27,62,0.6) 100%);
+            border-color: rgba(201,150,58,0.45);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(201,150,58,0.12);
+        }
+        .partner-logo-wrapper {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .partner-logo-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: brightness(0.95) contrast(1.05);
+            transition: transform 0.35s ease, filter 0.35s ease;
+        }
+        .partner-card:hover .partner-logo-wrapper img {
+            transform: scale(1.1);
+            filter: brightness(1.15) contrast(1.2);
+        }
+        .partner-name {
+            font-size: 11.5px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: center;
+            line-height: 1.35;
+            transition: color 0.3s ease;
+        }
+        .partner-card:hover .partner-name {
+            color: var(--gold-l);
+        }
+
+        /* ── Partner Modal & Triggers ── */
+        .partner-modal-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(201,150,58,0.35);
+            background: linear-gradient(135deg, rgba(201,150,58,0.12) 0%, rgba(201,150,58,0.04) 100%);
+            color: var(--gold-l);
+            font-family: 'Noto Serif Khmer','DM Sans',sans-serif;
+            font-size: 11.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .28s cubic-bezier(0.4,0,0.2,1);
+            white-space: nowrap;
+        }
+        .partner-modal-trigger:hover {
+            background: linear-gradient(135deg, rgba(201,150,58,0.25) 0%, rgba(201,150,58,0.10) 100%);
+            border-color: rgba(201,150,58,0.65);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(201,150,58,0.18);
+        }
+        .partner-header-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(201,150,58,0.4);
+            background: linear-gradient(135deg, rgba(201,150,58,0.14) 0%, rgba(201,150,58,0.06) 100%);
+            color: var(--gold-l);
+            font-family: 'Noto Serif Khmer','DM Sans',sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .3s cubic-bezier(0.4,0,0.2,1);
+            white-space: nowrap;
+            letter-spacing: .03em;
+        }
+        .partner-header-pill:hover {
+            background: linear-gradient(135deg, rgba(201,150,58,0.26) 0%, rgba(201,150,58,0.12) 100%);
+            border-color: rgba(201,150,58,0.7);
+            box-shadow: 0 4px 14px rgba(201,150,58,0.2);
+            transform: translateY(-1px);
+        }
+
+        /* ══════════════════════
+           WATCH VIDEO BUTTON & MODAL
+        ══════════════════════ */
+        .watch-video-header-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(201, 150, 58, 0.45);
+            background: linear-gradient(135deg, rgba(201, 150, 58, 0.20) 0%, rgba(201, 150, 58, 0.08) 100%);
+            color: var(--gold-l);
+            font-family: 'Noto Serif Khmer', 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            letter-spacing: .03em;
+            box-shadow: 0 2px 10px rgba(201, 150, 58, 0.15);
+        }
+
+        .watch-video-header-pill:hover {
+            background: linear-gradient(135deg, rgba(201, 150, 58, 0.35) 0%, rgba(201, 150, 58, 0.15) 100%);
+            border-color: var(--gold-l);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(201, 150, 58, 0.3);
+        }
+
+        .watch-video-header-pill svg {
+            color: var(--gold-pale);
+            transition: transform 0.3s ease;
+        }
+
+        .watch-video-header-pill:hover svg {
+            transform: scale(1.2);
+            color: #fff;
+        }
+
+        .watch-video-hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: 1px solid rgba(201, 150, 58, 0.5);
+            background: linear-gradient(135deg, rgba(201, 150, 58, 0.28) 0%, rgba(13, 27, 62, 0.8) 100%);
+            color: var(--gold-pale);
+            font-family: 'Noto Serif Khmer', 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            animation: up .90s ease both .32s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .watch-video-hero-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .watch-video-hero-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            border-color: var(--gold-l);
+            color: #ffffff;
+            box-shadow: 0 12px 32px rgba(201, 150, 58, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .watch-video-hero-btn:hover::before {
+            opacity: 1;
+        }
+
+        .video-play-ring {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-l) 100%);
+            color: var(--navy-d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px rgba(201, 150, 58, 0.6);
+            transition: all 0.35s ease;
+            position: relative;
+        }
+
+        .video-play-ring::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1.5px solid var(--gold-l);
+            opacity: 0.6;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.25); opacity: 0; }
+            100% { transform: scale(0.95); opacity: 0; }
+        }
+
+        .watch-video-hero-btn:hover .video-play-ring {
+            transform: scale(1.12);
+            background: linear-gradient(135deg, #fff 0%, var(--gold-l) 100%);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Video Cinema Modal */
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(4, 8, 20, 0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .video-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .video-modal-box {
+            background: linear-gradient(155deg, rgba(14, 25, 60, 0.98) 0%, rgba(8, 14, 35, 0.99) 100%);
+            border: 1px solid rgba(201, 150, 58, 0.45);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 920px;
+            position: relative;
+            transform: scale(0.90) translateY(24px);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow:
+                0 32px 90px rgba(0, 0, 0, 0.88),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+                0 0 70px rgba(201, 150, 58, 0.18);
+            overflow: hidden;
+        }
+
+        .video-modal-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-l), var(--gold), var(--gold-l), transparent);
+            box-shadow: 0 0 24px rgba(201, 150, 58, 0.6);
+            z-index: 5;
+        }
+
+        .video-modal.active .video-modal-box {
+            transform: scale(1) translateY(0);
+        }
+
+        .video-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            border-bottom: 1px solid rgba(201, 150, 58, 0.18);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .video-modal-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Noto Serif Khmer', 'Cormorant Garamond', serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 0 12px rgba(201, 150, 58, 0.3);
+        }
+
+        .video-modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(201, 150, 58, 0.2) 0%, rgba(201, 150, 58, 0.08) 100%);
+            border: 1px solid rgba(201, 150, 58, 0.4);
+            color: var(--gold-l);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .video-modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal-close:hover {
+            background: rgba(201, 150, 58, 0.2);
+            border-color: rgba(201, 150, 58, 0.6);
+            color: var(--gold-l);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 14px rgba(201, 150, 58, 0.3);
+        }
+
+        /* 16:9 Video Player Container */
+        .video-player-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            background: #000;
+        }
+
+        .video-player-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer Youtube Link Input Bar */
+        .video-modal-footer {
+            padding: 14px 24px;
+            background: rgba(8, 14, 35, 0.95);
+            border-top: 1px solid rgba(201, 150, 58, 0.18);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .video-url-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .video-url-input-wrap {
+            flex: 1;
+            min-width: 220px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(201, 150, 58, 0.3);
+            border-radius: 10px;
+            padding: 6px 12px;
+            transition: border-color 0.3s ease;
+        }
+
+        .video-url-input-wrap:focus-within {
+            border-color: var(--gold-l);
+            box-shadow: 0 0 12px rgba(201, 150, 58, 0.25);
+        }
+
+        .video-url-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-size: 12px;
+            font-family: inherit;
+        }
+
+        .video-url-input::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .video-url-btn {
+            padding: 6px 16px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-l) 100%);
+            color: var(--navy-d);
+            font-weight: 700;
+            font-size: 11px;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .video-url-btn:hover {
+            background: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(201, 150, 58, 0.4);
+        }
+
+        .partner-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            background: rgba(4, 9, 22, 0.85);
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .partner-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .partner-modal-box {
+            background: linear-gradient(155deg, rgba(16, 28, 68, 0.98) 0%, rgba(9, 16, 40, 0.99) 100%);
+            border: 1px solid rgba(201, 150, 58, 0.4);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 840px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 0;
+            position: relative;
+            transform: scale(0.92) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 32px 80px rgba(0,0,0,.85), 0 0 50px rgba(201,150,58,0.15);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(201,150,58,0.3) transparent;
+        }
+        .partner-modal-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-l), var(--gold), var(--gold-l), transparent);
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 0 24px rgba(201,150,58,0.55);
+        }
+        .partner-modal.active .partner-modal-box {
+            transform: scale(1) translateY(0);
+        }
+        .partner-modal-inner {
+            padding: 36px;
+        }
+        .partner-modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.6);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .partner-modal-close:hover {
+            background: rgba(201,150,58,0.2);
+            border-color: rgba(201,150,58,0.6);
+            color: var(--gold-l);
+            transform: rotate(90deg);
+        }
+        .partner-modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(201,150,58,0.18) 0%, rgba(201,150,58,0.06) 100%);
+            border: 1px solid rgba(201,150,58,0.4);
+            color: var(--gold-l);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .partner-modal-heading {
+            font-family: 'Noto Serif Khmer', 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .partner-modal-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .partner-modal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 18px;
+        }
+        .partner-modal-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .partner-modal-card:hover {
+            background: linear-gradient(135deg, rgba(201,150,58,0.18) 0%, rgba(13,27,62,0.8) 100%);
+            border-color: rgba(201,150,58,0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.4), 0 0 20px rgba(201,150,58,0.15);
+        }
+        .partner-modal-logo {
+            width: 68px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        .partner-modal-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: brightness(1);
+            transition: transform 0.3s ease;
+        }
+        .partner-modal-card:hover .partner-modal-logo img {
+            transform: scale(1.1);
+        }
+        .partner-modal-name {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            text-align: center;
+            line-height: 1.4;
+        }
+        .partner-modal-card:hover .partner-modal-name {
+            color: var(--gold-l);
+        }
+
         @media (max-width: 480px) {
             .leader-trigger span { display: none; }
             .leader-trigger { padding: 8px 10px; }
             .leader-drawer { width: 92vw; }
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .partners-section {
+                padding: 20px 16px;
+            }
         }
     </style>
 </head>
@@ -2172,7 +2798,16 @@
             <div class="header-right">
                 <a href="{{ route('lang.switch', 'kh') }}" class="lang-pill {{ app()->getLocale() === 'kh' ? 'active' : '' }}"><img src="{{ asset('images/kh.svg') }}" alt="Khmer" class="lang-flag"> Khmer</a>
                 <a href="{{ route('lang.switch', 'en') }}" class="lang-pill {{ app()->getLocale() === 'en' ? 'active' : '' }}"><img src="{{ asset('images/gb.svg') }}" alt="English" class="lang-flag"> English</a>
-                <a href="https://inter.psbu.edu.kh/" class="intl-pill">{{ app()->getLocale() === 'en' ? 'International Project' : 'គម្រោងអន្តរជាតិ' }}</a>
+                <!-- Watch Video Header Trigger -->
+                <!-- <button class="watch-video-header-pill" id="watchVideoHeaderBtn" aria-label="Watch Video">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                    <span>{{ app()->getLocale() === 'en' ? 'Watch Video' : 'ទស្សនាវីដេអូ' }}</span>
+                </button> -->
+                <!-- Partner Logos Trigger -->
+                <button class="partner-header-pill" id="partnerHeaderBtn" aria-label="Partner Logos">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span>{{ app()->getLocale() === 'en' ? 'Partners' : 'ដៃគូសហការ' }}</span>
+                </button>
                 <!-- Leader Drawer Trigger -->
                 <button class="leader-trigger" id="leaderDrawerBtn" aria-label="Leader Profile">
                     @if(isset($leader) && $leader->image)
@@ -2212,6 +2847,13 @@
                     <div class="m-dot"></div>
                     <span>បញ្ញា</span>
                 </div>
+                <!-- Watch Video Hero Trigger -->
+                <!-- <button class="watch-video-hero-btn" id="watchVideoHeroBtn" aria-label="Watch Video">
+                    <span class="video-play-ring">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                    </span>
+                    <span>▶ {{ app()->getLocale() === 'en' ? 'Watch Video' : 'ទស្សនាវីដេអូ' }}</span>
+                </button> -->
             </div>
 
             <div class="c-dots" id="dots">
@@ -2293,6 +2935,38 @@
 
         </div>
 
+        @if(isset($partners) && $partners->isNotEmpty())
+        <!-- PARTNERS SECTION -->
+        <!-- <div class="partners-section">
+            <div class="partners-head">
+                <div class="partners-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span>{{ app()->getLocale() === 'en' ? 'Our Partners' : 'ដៃគូសហការ' }}</span>
+                </div>
+                <div class="partners-rule"></div>
+                <button class="partner-modal-trigger" id="openPartnerModalBtn" type="button">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    <span>{{ app()->getLocale() === 'en' ? 'View All Logos' : 'មើលឡូហ្គោទាំងអស់' }}</span>
+                </button>
+            </div>
+            <div class="partners-grid">
+                @foreach($partners as $partner)
+                <a href="{{ $partner->url ?? '#' }}" class="partner-card" target="_blank" rel="noopener noreferrer" title="{{ $partner->name }}">
+                    <div class="partner-logo-wrapper">
+                        <img src="{{ asset($partner->logo) }}" alt="{{ $partner->name }}">
+                    </div>
+                    <span class="partner-name">{{ $partner->name }}</span>
+                </a>
+                @endforeach
+            </div>
+        </div> -->
+        @endif
+
         <!-- CONTACT BAR -->
         <div class="contact">
             @php
@@ -2319,6 +2993,14 @@
                 </span>
             </a>
             @endforeach
+            <!-- Watch Video Footer Button -->
+            <button type="button" class="ct watch-video-footer-btn" id="watchVideoFooterBtn" aria-label="Watch Video">
+                <div class="ct-icon" style="background: linear-gradient(135deg, rgba(201,150,58,0.25) 0%, rgba(201,150,58,0.10) 100%); border-color: rgba(201,150,58,0.5);">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15" style="color: var(--gold-l);"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                </div>
+                <span class="ct-txt">{{ app()->getLocale() === 'en' ? 'Watch Video' : 'ទស្សនាវីដេអូ' }}</span>
+                <span class="ct-short-txt">{{ app()->getLocale() === 'en' ? 'Video' : 'វីដេអូ' }}</span>
+            </button>
         </div>
 
     </div>
@@ -2720,6 +3402,220 @@
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && drawer.classList.contains('open')) {
                     closeDrawer();
+                }
+            });
+        })();
+    </script>
+
+    @if(isset($partners) && $partners->isNotEmpty())
+    <!-- PARTNER LOGOS FULL MODAL -->
+    <div id="partnerModal" class="partner-modal" role="dialog" aria-modal="true" aria-label="Partner Logos">
+        <div class="partner-modal-box">
+            <button class="partner-modal-close" id="partnerModalClose" aria-label="Close">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="partner-modal-inner">
+                <div class="partner-modal-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    {{ app()->getLocale() === 'en' ? 'Institutional & Academic Partners' : 'ដៃគូសហការ និង ស្ថាប័នពាក់ព័ន្ធ' }}
+                </div>
+                <h2 class="partner-modal-heading">{{ app()->getLocale() === 'en' ? 'All Partner Organizations' : 'ឡូហ្គោដៃគូសហការទាំងអស់' }}</h2>
+                <p class="partner-modal-sub">{{ app()->getLocale() === 'en' ? 'Preah Sihamoniraja Buddhist University collaborates with leading educational, cultural, and international institutions.' : 'ពុទ្ធិកសាកលវិទ្យាល័យព្រះសីហមុនីរាជា សហការជាមួយស្ថាប័នអប់រំ វប្បធម៌ និងដៃគូអន្តរជាតិនានា។' }}</p>
+                
+                <div class="partner-modal-grid">
+                    @foreach($partners as $partner)
+                    <a href="{{ $partner->url ?? '#' }}" class="partner-modal-card" target="_blank" rel="noopener noreferrer" title="{{ $partner->name }}">
+                        <div class="partner-modal-logo">
+                            <img src="{{ asset($partner->logo) }}" alt="{{ $partner->name }}">
+                        </div>
+                        <span class="partner-modal-name">{{ $partner->name }}</span>
+                    </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PARTNER MODAL JS -->
+    <script>
+        (function () {
+            const partnerModal = document.getElementById('partnerModal');
+            const closeBtn = document.getElementById('partnerModalClose');
+            const openBtns = [
+                document.getElementById('openPartnerModalBtn'),
+                document.getElementById('partnerHeaderBtn')
+            ];
+
+            function openPartnerModal(e) {
+                if (e) e.preventDefault();
+                if (partnerModal) {
+                    partnerModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function closePartnerModal() {
+                if (partnerModal) {
+                    partnerModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            openBtns.forEach(btn => {
+                if (btn) btn.addEventListener('click', openPartnerModal);
+            });
+
+            if (closeBtn) closeBtn.addEventListener('click', closePartnerModal);
+
+            if (partnerModal) {
+                partnerModal.addEventListener('click', function (e) {
+                    if (e.target === partnerModal) {
+                        closePartnerModal();
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && partnerModal && partnerModal.classList.contains('active')) {
+                    closePartnerModal();
+                }
+            });
+        })();
+    </script>
+    @endif
+
+    <!-- VIDEO CINEMA MODAL STRUCTURE -->
+    <div id="videoModal" class="video-modal" role="dialog" aria-modal="true" aria-label="Watch Video">
+        <div class="video-modal-box">
+            <div class="video-modal-header">
+                <div class="video-modal-title">
+                    <span class="video-modal-badge">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                        YouTube
+                    </span>
+                    <span>{{ app()->getLocale() === 'en' ? 'Watch Video Presentation' : 'វីដេអូបទបង្ហាញ និងសកម្មភាព' }}</span>
+                </div>
+                <button class="video-modal-close" id="videoModalClose" aria-label="Close">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+
+            <div class="video-player-wrapper">
+                <iframe id="videoIframe" src="" title="PSBU Video Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+
+            <div class="video-modal-footer">
+                <div class="video-url-label">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    <span>YouTube Link:</span>
+                </div>
+                <div class="video-url-input-wrap">
+                    <input type="text" id="videoUrlInput" class="video-url-input" placeholder="Paste YouTube link here..." value="https://www.youtube.com/watch?v=ZGeP_FfSsBI">
+                </div>
+                <button type="button" id="videoUrlLoadBtn" class="video-url-btn">
+                    {{ app()->getLocale() === 'en' ? 'Load Video' : 'ផ្ទុកវីដេអូ' }}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO MODAL JS -->
+    <script>
+        (function () {
+            const videoModal = document.getElementById('videoModal');
+            const videoModalClose = document.getElementById('videoModalClose');
+            const videoIframe = document.getElementById('videoIframe');
+            const videoUrlInput = document.getElementById('videoUrlInput');
+            const videoUrlLoadBtn = document.getElementById('videoUrlLoadBtn');
+            const watchBtns = [
+                document.getElementById('watchVideoHeaderBtn'),
+                document.getElementById('watchVideoHeroBtn'),
+                document.getElementById('watchVideoFooterBtn')
+            ];
+
+            function extractYouTubeEmbedUrl(url) {
+                if (!url) return '';
+                let videoId = '';
+                try {
+                    const trimmed = url.trim();
+                    if (trimmed.includes('youtu.be/')) {
+                        videoId = trimmed.split('youtu.be/')[1].split('?')[0].split('&')[0];
+                    } else if (trimmed.includes('youtube.com/watch')) {
+                        const urlParts = trimmed.split('?');
+                        if (urlParts[1]) {
+                            const urlParams = new URLSearchParams(urlParts[1]);
+                            videoId = urlParams.get('v');
+                        }
+                    } else if (trimmed.includes('youtube.com/embed/')) {
+                        videoId = trimmed.split('youtube.com/embed/')[1].split('?')[0].split('&')[0];
+                    } else if (trimmed.includes('youtube.com/shorts/')) {
+                        videoId = trimmed.split('youtube.com/shorts/')[1].split('?')[0].split('&')[0];
+                    } else {
+                        videoId = trimmed;
+                    }
+                } catch (err) {
+                    console.error('Invalid URL:', err);
+                }
+                return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1` : '';
+            }
+
+            function loadVideo() {
+                const rawUrl = videoUrlInput ? videoUrlInput.value : '';
+                const embedUrl = extractYouTubeEmbedUrl(rawUrl);
+                if (embedUrl && videoIframe) {
+                    videoIframe.src = embedUrl;
+                }
+            }
+
+            function openVideoModal(e) {
+                if (e) e.preventDefault();
+                if (videoModal) {
+                    loadVideo();
+                    videoModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function closeVideoModal() {
+                if (videoModal) {
+                    videoModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    if (videoIframe) {
+                        videoIframe.src = '';
+                    }
+                }
+            }
+
+            watchBtns.forEach(btn => {
+                if (btn) btn.addEventListener('click', openVideoModal);
+            });
+
+            if (videoModalClose) videoModalClose.addEventListener('click', closeVideoModal);
+
+            if (videoModal) {
+                videoModal.addEventListener('click', function (e) {
+                    if (e.target === videoModal) {
+                        closeVideoModal();
+                    }
+                });
+            }
+
+            if (videoUrlLoadBtn) {
+                videoUrlLoadBtn.addEventListener('click', loadVideo);
+            }
+
+            if (videoUrlInput) {
+                videoUrlInput.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        loadVideo();
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) {
+                    closeVideoModal();
                 }
             });
         })();
